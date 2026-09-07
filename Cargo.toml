@@ -1,0 +1,64 @@
+[package]
+name = "sdk"
+version = "26.1.0"
+edition = "2021"
+license = "TCL"
+description = "TontooOS system SDK: thin dynamic bindings to the frameworks in /Library/System"
+readme = "README.md"
+keywords = ["tontoo", "sdk", "ffi", "system"]
+categories = ["os"]
+
+[dependencies]
+libloading = "0.8"
+# Re-exported frameworks (PascalCase dirs preserved per user decision).
+# Optional – enable via `features = ["uikit"]` etc. so apps pay only for what they use.
+accessibility = { package = "accessibility", path = "../Accessibility", optional = true }
+coredata = { package = "coredata", path = "../CoreData", optional = true }
+coreicon = { package = "coreicon", path = "../CoreIcon", optional = true }
+corelocation = { package = "corelocation", path = "../CoreLocation", optional = true }
+fishfile = { package = "fishfile", path = "../FishFile", optional = true }
+foundation = { package = "foundation", path = "../Foundation", optional = true }
+mapskit = { package = "mapskit", path = "../MapsKit", optional = true }
+networkkit = { package = "networkkit", path = "../NetworkKit", optional = true }
+tontooui = { package = "tontooui", path = "../TontooUI", optional = true }
+uikit = { package = "uikit", path = "../UIKit", optional = true }
+uikitdynamics = { package = "uikitdynamics", path = "../UIKitDynamics", optional = true }
+weatherkit = { package = "weatherkit", path = "../WeatherKit", optional = true }
+webkit = { package = "webkit", path = "../WebKit", optional = true }
+
+[features]
+default = []
+accessibility = ["dep:accessibility"]
+coredata = ["dep:coredata"]
+coreicon = ["dep:coreicon"]
+corelocation = ["dep:corelocation"]
+fishfile = ["dep:fishfile"]
+foundation = ["dep:foundation"]
+mapskit = ["dep:mapskit"]
+networkkit = ["dep:networkkit"]
+tontooui = ["dep:tontooui"]
+uikit = ["dep:uikit"]
+uikitdynamics = ["dep:uikitdynamics"]
+weatherkit = ["dep:weatherkit"]
+webkit = ["dep:webkit"]
+# PascalCase aliases (so `features = ["TontooUI"]` works as expected)
+Accessibility = ["accessibility"]
+CoreData = ["coredata"]
+CoreIcon = ["coreicon"]
+CoreLocation = ["corelocation"]
+FishFile = ["fishfile"]
+Foundation = ["foundation"]
+MapsKit = ["mapskit"]
+NetworkKit = ["networkkit"]
+TontooUI = ["tontooui"]
+UIKit = ["uikit"]
+UIKitDynamics = ["uikitdynamics"]
+WeatherKit = ["weatherkit"]
+WebKit = ["webkit"]
+# Convenience: all frameworks except LaunchPad (excluded per plan)
+full = ["accessibility","coredata","coreicon","corelocation","fishfile","foundation","mapskit","networkkit","tontooui","uikit","uikitdynamics","weatherkit","webkit"]
+Full = ["full"]
+
+[lib]
+name = "sdk"
+crate-type = ["rlib"]
