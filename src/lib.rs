@@ -31,6 +31,7 @@
 pub mod accessibility;
 pub mod coreicon;
 pub mod corelocation;
+pub mod corewindows;
 pub mod foundation;
 pub mod mapskit;
 pub mod networkkit;
@@ -164,7 +165,18 @@ pub mod WebKit {
     pub use crate::webkit::*;
 }
 
-// CoreData / FishFile have no thin FFI shim – only full crate
+// CoreData / FishFile / CoreSettings have no thin FFI shim – only full crate
+#[cfg(feature = "corewindows")]
+#[allow(non_snake_case)]
+pub mod CoreWindows {
+  pub use ::corewindows::*;
+}
+#[cfg(not(feature = "corewindows"))]
+#[allow(non_snake_case)]
+pub mod CoreWindows {
+  pub use crate::corewindows::*;
+}
+
 #[cfg(feature = "coredata")]
 #[allow(non_snake_case)]
 pub mod CoreData {
@@ -173,6 +185,15 @@ pub mod CoreData {
 #[cfg(not(feature = "coredata"))]
 #[allow(non_snake_case)]
 pub mod CoreData {}
+
+#[cfg(feature = "coresettings")]
+#[allow(non_snake_case)]
+pub mod CoreSettings {
+    pub use ::coresettings::*;
+}
+#[cfg(not(feature = "coresettings"))]
+#[allow(non_snake_case)]
+pub mod CoreSettings {}
 
 #[cfg(feature = "fishfile")]
 #[allow(non_snake_case)]
@@ -208,6 +229,10 @@ macro_rules! preinclude {
             pub use ::sdk::CoreLocation::*;
         }
         #[allow(non_snake_case, unused_imports)]
+        mod CoreWindows {
+            pub use ::sdk::CoreWindows::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
         mod FishFile {
             pub use ::sdk::FishFile::*;
         }
@@ -222,6 +247,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod NetworkKit {
             pub use ::sdk::NetworkKit::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod CoreSettings {
+            pub use ::sdk::CoreSettings::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod TontooUI {
@@ -255,6 +284,10 @@ macro_rules! preinclude {
         #[allow(unused_imports)]
         mod corelocation {
             pub use ::sdk::corelocation::*;
+        }
+        #[allow(unused_imports)]
+        mod corewindows {
+            pub use ::sdk::corewindows::*;
         }
         #[allow(unused_imports)]
         mod foundation {

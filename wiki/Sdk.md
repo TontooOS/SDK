@@ -25,7 +25,7 @@ version installed on the running system.
 | Rules | [RULE.md](RULE.md) | Wiki authoring rules |
 | Dynamic loading | [#dynamic-loading](#dynamic-loading) | Library loader, `TONTOO_LIB_DIR` override, version queries |
 | Frameworks macro | [#frameworks-macro](#frameworks-macro) | `sdk::frameworks!()` shim modules and import rules |
-| Bound frameworks | [#bound-frameworks](#bound-frameworks) | accessibility, coreicon, corelocation, foundation, mapskit, networkkit, tontooui, uikit, uikitdynamics, weatherkit, webkit APIs |
+| Bound frameworks | [#bound-frameworks](#bound-frameworks) | accessibility, coreicon, corelocation, corewindows, foundation, mapskit, networkkit, tontooui, uikit, uikitdynamics, weatherkit, webkit APIs |
 
 ## Dynamic loading
 
@@ -96,6 +96,21 @@ Blocking - worker thread.
 | --- | --- |
 | `get_location() -> Result<String>` | JSON location object (blocking) |
 | `get_location_from(source) -> Result<String>` | 0 GPS, 1 WiFi, 2 IP, 3 timezone, 4 manual |
+
+### corewindows
+
+| Function | Purpose |
+| --- | --- |
+| `ping() -> Result<bool>` | Ping the window daemon (default socket) |
+| `ping_at(socket) -> Result<bool>` | Ping the window daemon at an explicit socket |
+| `list_windows() -> Result<String>` | Open windows as a JSON array of `WindowInfo` |
+| `list_windows_at(socket) -> Result<String>` | Same via an explicit socket |
+| `minimize_window(id) -> Result<()>` | Minimize (iconify) a window |
+| `set_fullscreen(id, fullscreen) -> Result<()>` | Fullscreen / unfullscreen a window |
+| `close_window(id) -> Result<()>` | Graceful close (app may show a save dialog) |
+| `force_quit_window(id) -> Result<()>` | Force quit the window owner (`SIGKILL`) |
+| `force_quit_pid(pid) -> Result<()>` | Force quit a process id (`SIGKILL`) |
+| `list_programs() -> Result<String>` | Installed programs as a JSON array of `AppEntry` |
 
 ### foundation
 

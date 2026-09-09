@@ -16,10 +16,12 @@ accessibility = { package = "accessibility", path = "../Accessibility", optional
 coredata = { package = "coredata", path = "../CoreData", optional = true }
 coreicon = { package = "coreicon", path = "../CoreIcon", optional = true }
 corelocation = { package = "corelocation", path = "../CoreLocation", optional = true }
+corewindows = { package = "corewindows", path = "../CoreWindows", optional = true }
 fishfile = { package = "fishfile", path = "../FishFile", optional = true }
 foundation = { package = "foundation", path = "../Foundation", optional = true }
 mapskit = { package = "mapskit", path = "../MapsKit", optional = true }
 networkkit = { package = "networkkit", path = "../NetworkKit", optional = true }
+coresettings = { package = "coresettings", path = "../CoreSettings", optional = true }
 tontooui = { package = "tontooui", path = "../TontooUI", optional = true }
 uikit = { package = "uikit", path = "../UIKit", optional = true }
 uikitdynamics = { package = "uikitdynamics", path = "../UIKitDynamics", optional = true }
@@ -32,10 +34,12 @@ accessibility = ["dep:accessibility"]
 coredata = ["dep:coredata"]
 coreicon = ["dep:coreicon"]
 corelocation = ["dep:corelocation"]
+corewindows = ["dep:corewindows"]
 fishfile = ["dep:fishfile"]
 foundation = ["dep:foundation"]
 mapskit = ["dep:mapskit"]
 networkkit = ["dep:networkkit"]
+coresettings = ["dep:coresettings"]
 tontooui = ["dep:tontooui"]
 uikit = ["dep:uikit"]
 uikitdynamics = ["dep:uikitdynamics"]
@@ -46,17 +50,19 @@ Accessibility = ["accessibility"]
 CoreData = ["coredata"]
 CoreIcon = ["coreicon"]
 CoreLocation = ["corelocation"]
+CoreWindows = ["corewindows"]
 FishFile = ["fishfile"]
 Foundation = ["foundation"]
 MapsKit = ["mapskit"]
 NetworkKit = ["networkkit"]
+CoreSettings = ["coresettings"]
 TontooUI = ["tontooui"]
 UIKit = ["uikit"]
 UIKitDynamics = ["uikitdynamics"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","coredata","coreicon","corelocation","fishfile","foundation","mapskit","networkkit","tontooui","uikit","uikitdynamics","weatherkit","webkit"]
+full = ["accessibility","coredata","coreicon","corelocation","corewindows","fishfile","foundation","mapskit","networkkit","coresettings","tontooui","uikit","uikitdynamics","weatherkit","webkit"]
 Full = ["full"]
 
 [lib]
