@@ -96,6 +96,11 @@ pub fn minimize_window(id: u64) -> Result<()> {
   action0(b"tontoo_corewindows_minimize_window\0", None, id)
 }
 
+/// Restore a window minimized to the dock via the default socket.
+pub fn restore_window(id: u64) -> Result<()> {
+  action0(b"tontoo_corewindows_restore_window\0", None, id)
+}
+
 /// Set fullscreen state of a window via the default socket
 /// (`true` = fullscreen like the green UIKit traffic light).
 pub fn set_fullscreen(id: u64, fullscreen: bool) -> Result<()> {
