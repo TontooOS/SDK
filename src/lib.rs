@@ -110,6 +110,15 @@ pub mod NetworkKit {
     pub use crate::networkkit::*;
 }
 
+#[cfg(feature = "pdfkit")]
+#[allow(non_snake_case)]
+pub mod PDFKit {
+    pub use ::pdfkit::*;
+}
+#[cfg(not(feature = "pdfkit"))]
+#[allow(non_snake_case)]
+pub mod PDFKit {}
+
 #[cfg(feature = "tontooui")]
 #[allow(non_snake_case)]
 pub mod TontooUI {
@@ -247,6 +256,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod NetworkKit {
             pub use ::sdk::NetworkKit::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod PDFKit {
+            pub use ::sdk::PDFKit::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod CoreSettings {

@@ -22,6 +22,7 @@ foundation = { package = "foundation", path = "../Foundation", optional = true }
 mapskit = { package = "mapskit", path = "../MapsKit", optional = true }
 networkkit = { package = "networkkit", path = "../NetworkKit", optional = true }
 coresettings = { package = "coresettings", path = "../CoreSettings", optional = true }
+pdfkit = { package = "pdfkit", path = "../PDFKit", optional = true }
 tontooui = { package = "tontooui", path = "../TontooUI", optional = true }
 uikit = { package = "uikit", path = "../UIKit", optional = true }
 uikitdynamics = { package = "uikitdynamics", path = "../UIKitDynamics", optional = true }
@@ -40,6 +41,7 @@ foundation = ["dep:foundation"]
 mapskit = ["dep:mapskit"]
 networkkit = ["dep:networkkit"]
 coresettings = ["dep:coresettings"]
+pdfkit = ["dep:pdfkit"]
 tontooui = ["dep:tontooui"]
 uikit = ["dep:uikit"]
 uikitdynamics = ["dep:uikitdynamics"]
@@ -56,13 +58,14 @@ Foundation = ["foundation"]
 MapsKit = ["mapskit"]
 NetworkKit = ["networkkit"]
 CoreSettings = ["coresettings"]
+PDFKit = ["pdfkit"]
 TontooUI = ["tontooui"]
 UIKit = ["uikit"]
 UIKitDynamics = ["uikitdynamics"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","coredata","coreicon","corelocation","corewindows","fishfile","foundation","mapskit","networkkit","coresettings","tontooui","uikit","uikitdynamics","weatherkit","webkit"]
+full = ["accessibility","coredata","coreicon","corelocation","corewindows","fishfile","foundation","mapskit","networkkit","coresettings","pdfkit","tontooui","uikit","uikitdynamics","weatherkit","webkit"]
 Full = ["full"]
 
 [lib]

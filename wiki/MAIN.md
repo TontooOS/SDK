@@ -11,3 +11,4 @@ at runtime.
 | Main index | [MAIN.md](MAIN.md) | Entry point: overview + index of all features |
 | Rules | [RULE.md](RULE.md) | Wiki authoring rules |
 | System bindings | [Sdk.md](Sdk.md) | Dynamic loading, shim macro, per-framework modules |
+| PDFKit | [Pdfkit.md](Pdfkit.md) | Sandboxed PDF rendering, editing and TontooUI elements |
