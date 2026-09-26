@@ -63,6 +63,16 @@ pub fn version() -> Result<String> {
     Ok(unsafe { read_static_string(f()) }.unwrap_or_default())
 }
 
+/// Backend of the shared engine (`"cpal"`, `"pipewire"` or `"none"`).
+pub fn engine_backend() -> Result<String> {
+    let lib = load(NAME)?;
+    let f = sym::<unsafe extern "C" fn() -> *const c_char>(
+        lib,
+        b"tontoo_audiokit_engine_backend\0",
+    )?;
+    Ok(unsafe { read_static_string(f()) }.unwrap_or_default())
+}
+
 /// Output devices as a JSON array.
 pub fn list_output_devices() -> Result<String> {
     call_json(b"tontoo_audiokit_list_output_devices\0")?
