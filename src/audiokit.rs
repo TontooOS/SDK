@@ -97,6 +97,23 @@ pub fn play_file(path: &str) -> Result<u64> {
     }
 }
 
+/// Streams a file with bounded RAM. Returns the stream id.
+pub fn play_stream(path: &str) -> Result<u64> {
+    let lib = load(NAME)?;
+    let f = sym::<PlayFn>(lib, b"tontoo_audiokit_play_stream\0")?;
+    let c_path = CString::new(path).map_err(|_| SdkError("invalid path".into()))?;
+    let mut error: *mut c_char = std::ptr::null_mut();
+    let id = unsafe { f(c_path.as_ptr(), &mut error) };
+    if id == 0 {
+        Err(SdkError(
+            unsafe { take_string(lib, error, FREE) }
+                .unwrap_or_else(|| "audiokit stream failed".to_owned()),
+        ))
+    } else {
+        Ok(id)
+    }
+}
+
 /// Resumes playback of a stream.
 pub fn stream_play(id: u64) -> Result<()> {
     call_stream(b"tontoo_audiokit_stream_play\0", id)
@@ -184,4 +201,57 @@ pub fn system_volume_set(percent: u32) -> Result<()> {
                 .unwrap_or_else(|| "audiokit system volume failed".to_owned()),
         ))
     }
+}
+
+/// Sets a stereo echo on a stream.
+pub fn stream_set_echo(id: u64, delay_ms: u32, feedback: f32, mix: f32) -> Result<()> {
+    let lib = load(NAME)?;
+    type EchoFn = unsafe extern "C" fn(u64, u32, f32, f32, *mut *mut c_char) -> i32;
+    let f = sym::<EchoFn>(lib, b"tontoo_audiokit_stream_set_echo\0")?;
+    let mut error: *mut c_char = std::ptr::null_mut();
+    if unsafe { f(id, delay_ms, feedback, mix, &mut error) } == 0 {
+        Ok(())
+    } else {
+        Err(SdkError(
+            unsafe { take_string(lib, error, FREE) }
+                .unwrap_or_else(|| "audiokit echo failed".to_owned()),
+        ))
+    }
+}
+
+/// Sets a room reverb on a stream.
+pub fn stream_set_reverb(id: u64, mix: f32, decay: f32) -> Result<()> {
+    let lib = load(NAME)?;
+    type ReverbFn = unsafe extern "C" fn(u64, f32, f32, *mut *mut c_char) -> i32;
+    let f = sym::<ReverbFn>(lib, b"tontoo_audiokit_stream_set_reverb\0")?;
+    let mut error: *mut c_char = std::ptr::null_mut();
+    if unsafe { f(id, mix, decay, &mut error) } == 0 {
+        Ok(())
+    } else {
+        Err(SdkError(
+            unsafe { take_string(lib, error, FREE) }
+                .unwrap_or_else(|| "audiokit reverb failed".to_owned()),
+        ))
+    }
+}
+
+/// Sets a 3-band equalizer on a stream (dB per band).
+pub fn stream_set_eq(id: u64, low_db: f32, mid_db: f32, high_db: f32) -> Result<()> {
+    let lib = load(NAME)?;
+    type EqFn = unsafe extern "C" fn(u64, f32, f32, f32, *mut *mut c_char) -> i32;
+    let f = sym::<EqFn>(lib, b"tontoo_audiokit_stream_set_eq\0")?;
+    let mut error: *mut c_char = std::ptr::null_mut();
+    if unsafe { f(id, low_db, mid_db, high_db, &mut error) } == 0 {
+        Ok(())
+    } else {
+        Err(SdkError(
+            unsafe { take_string(lib, error, FREE) }
+                .unwrap_or_else(|| "audiokit eq failed".to_owned()),
+        ))
+    }
+}
+
+/// Removes all effects from a stream.
+pub fn stream_clear_effects(id: u64) -> Result<()> {
+    call_stream(b"tontoo_audiokit_stream_clear_effects\0", id)
 }
