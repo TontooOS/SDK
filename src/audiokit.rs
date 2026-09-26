@@ -271,3 +271,61 @@ pub fn stream_set_eq(id: u64, low_db: f32, mid_db: f32, high_db: f32) -> Result<
 pub fn stream_clear_effects(id: u64) -> Result<()> {
     call_stream(b"tontoo_audiokit_stream_clear_effects\0", id)
 }
+
+/// Starts microphone capture (default input, or `device_id`).
+/// Returns the recorder id.
+pub fn recorder_start(device_id: Option<&str>) -> Result<u64> {
+    let lib = load(NAME)?;
+    type StartFn = unsafe extern "C" fn(*const c_char, *mut *mut c_char) -> u64;
+    let f = sym::<StartFn>(lib, b"tontoo_audiokit_recorder_start\0")?;
+    let c_id = device_id
+        .map(CString::new)
+        .transpose()
+        .map_err(|_| SdkError("invalid device id".into()))?;
+    let ptr = c_id.as_ref().map(|c| c.as_ptr()).unwrap_or(std::ptr::null());
+    let mut error: *mut c_char = std::ptr::null_mut();
+    let id = unsafe { f(ptr, &mut error) };
+    if id == 0 {
+        Err(SdkError(
+            unsafe { take_string(lib, error, FREE) }
+                .unwrap_or_else(|| "audiokit record failed".to_owned()),
+        ))
+    } else {
+        Ok(id)
+    }
+}
+
+/// Current input level (RMS, 0.0-1.0), or `None` when unknown.
+pub fn recorder_level(id: u64) -> Result<Option<f32>> {
+    let lib = load(NAME)?;
+    type LevelFn = unsafe extern "C" fn(u64) -> f32;
+    let f = sym::<LevelFn>(lib, b"tontoo_audiokit_recorder_level\0")?;
+    let level = unsafe { f(id) };
+    if level < 0.0 {
+        Ok(None)
+    } else {
+        Ok(Some(level))
+    }
+}
+
+/// Stops capture, saves the take to `path` and releases the recorder.
+pub fn recorder_stop_save(id: u64, path: &str) -> Result<()> {
+    let lib = load(NAME)?;
+    type StopFn = unsafe extern "C" fn(u64, *const c_char, *mut *mut c_char) -> i32;
+    let f = sym::<StopFn>(lib, b"tontoo_audiokit_recorder_stop_save\0")?;
+    let c_path = CString::new(path).map_err(|_| SdkError("invalid path".into()))?;
+    let mut error: *mut c_char = std::ptr::null_mut();
+    if unsafe { f(id, c_path.as_ptr(), &mut error) } == 0 {
+        Ok(())
+    } else {
+        Err(SdkError(
+            unsafe { take_string(lib, error, FREE) }
+                .unwrap_or_else(|| "audiokit record save failed".to_owned()),
+        ))
+    }
+}
+
+/// Discards capture without saving and releases the recorder.
+pub fn recorder_discard(id: u64) -> Result<()> {
+    call_stream(b"tontoo_audiokit_recorder_discard\0", id)
+}
