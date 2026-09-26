@@ -25,7 +25,7 @@ version installed on the running system.
 | Rules | [RULE.md](RULE.md) | Wiki authoring rules |
 | Dynamic loading | [#dynamic-loading](#dynamic-loading) | Library loader, `TONTOO_LIB_DIR` override, version queries |
 | Frameworks macro | [#frameworks-macro](#frameworks-macro) | `sdk::frameworks!()` shim modules and import rules |
-| Bound frameworks | [#bound-frameworks](#bound-frameworks) | accessibility, coreicon, corelocation, coretext, corewindows, foundation, mapskit, networkkit, tontooui, weatherkit, webkit APIs |
+| Bound frameworks | [#bound-frameworks](#bound-frameworks) | accessibility, coreicon, coreimage, corelocation, coretext, corewindows, foundation, mapskit, networkkit, tontooui, weatherkit, webkit APIs |
 
 ## Dynamic loading
 
@@ -152,6 +152,17 @@ Handle-based components; destroyed automatically on drop.
 | --- | --- |
 | `ProgressView::new()` + `.widget()` | Spinner progress view |
 | `TextInput::new(placeholder)` + `.text()` + `.widget()` | Text input field |
+
+### coreimage
+
+| Function | Purpose |
+| --- | --- |
+| `version() -> Result<String>` | Framework version string |
+| `dimensions(path) -> Result<(u32, u32)>` | Image size without full processing |
+| `blur_to_file(input, output, sigma) -> Result<()>` | Gaussian blur into a PNG file |
+
+With `features = ["CoreImage"]` the full crate is re-exported as
+`sdk::CoreImage` instead of this thin binding.
 
 ### coretext
 

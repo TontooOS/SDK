@@ -32,6 +32,7 @@ fn pascal_dir(framework: &str) -> Option<&'static str> {
         "audiokit" => Some("AudioKit"),
         "coredata" => Some("CoreData"),
         "coreicon" => Some("CoreIcon"),
+        "coreimage" => Some("CoreImage"),
         "corelocation" => Some("CoreLocation"),
         "fishfile" => Some("FishFile"),
         "foundation" => Some("Foundation"),
