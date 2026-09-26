@@ -30,11 +30,13 @@
 pub mod accessibility;
 pub mod audiokit;
 pub mod coreicon;
+pub mod coreimage;
 pub mod corelocation;
 pub mod coretext;
 pub mod corewindows;
 pub mod foundation;
 pub mod mapskit;
+pub mod mediakit;
 pub mod networkkit;
 pub mod runtime;
 pub mod tontooui;
@@ -74,6 +76,17 @@ pub mod CoreIcon {
 #[allow(non_snake_case)]
 pub mod CoreIcon {
     pub use crate::coreicon::*;
+}
+
+#[cfg(feature = "coreimage")]
+#[allow(non_snake_case)]
+pub mod CoreImage {
+    pub use ::coreimage::*;
+}
+#[cfg(not(feature = "coreimage"))]
+#[allow(non_snake_case)]
+pub mod CoreImage {
+    pub use crate::coreimage::*;
 }
 
 #[cfg(feature = "coretext")]
@@ -118,6 +131,17 @@ pub mod MapsKit {
 #[allow(non_snake_case)]
 pub mod MapsKit {
     pub use crate::mapskit::*;
+}
+
+#[cfg(feature = "mediakit")]
+#[allow(non_snake_case)]
+pub mod MediaKit {
+    pub use ::mediakit::*;
+}
+#[cfg(not(feature = "mediakit"))]
+#[allow(non_snake_case)]
+pub mod MediaKit {
+    pub use crate::mediakit::*;
 }
 
 #[cfg(feature = "networkkit")]
@@ -237,6 +261,10 @@ macro_rules! preinclude {
             pub use ::sdk::CoreIcon::*;
         }
         #[allow(non_snake_case, unused_imports)]
+        mod CoreImage {
+            pub use ::sdk::CoreImage::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
         mod CoreLocation {
             pub use ::sdk::CoreLocation::*;
         }
@@ -259,6 +287,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod MapsKit {
             pub use ::sdk::MapsKit::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod MediaKit {
+            pub use ::sdk::MediaKit::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod NetworkKit {
@@ -298,6 +330,10 @@ macro_rules! preinclude {
             pub use ::sdk::coreicon::*;
         }
         #[allow(unused_imports)]
+        mod coreimage {
+            pub use ::sdk::coreimage::*;
+        }
+        #[allow(unused_imports)]
         mod corelocation {
             pub use ::sdk::corelocation::*;
         }
@@ -316,6 +352,10 @@ macro_rules! preinclude {
         #[allow(unused_imports)]
         mod mapskit {
             pub use ::sdk::mapskit::*;
+        }
+        #[allow(unused_imports)]
+        mod mediakit {
+            pub use ::sdk::mediakit::*;
         }
         #[allow(unused_imports)]
         mod networkkit {

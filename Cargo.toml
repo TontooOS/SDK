@@ -16,12 +16,14 @@ accessibility = { package = "accessibility", path = "../Accessibility", optional
 audiokit = { package = "audiokit", path = "../AudioKit", optional = true }
 coredata = { package = "coredata", path = "../CoreData", optional = true }
 coreicon = { package = "coreicon", path = "../CoreIcon", optional = true }
+coreimage = { package = "coreimage", path = "../CoreImage", optional = true }
 corelocation = { package = "corelocation", path = "../CoreLocation", optional = true }
 coretext = { package = "coretext", path = "../CoreText", optional = true }
 corewindows = { package = "corewindows", path = "../CoreWindows", optional = true }
 fishfile = { package = "fishfile", path = "../FishFile", optional = true }
 foundation = { package = "foundation", path = "../Foundation", optional = true }
 mapskit = { package = "mapskit", path = "../MapsKit", optional = true }
+mediakit = { package = "mediakit", path = "../MediaKit", optional = true }
 networkkit = { package = "networkkit", path = "../NetworkKit", optional = true }
 coresettings = { package = "coresettings", path = "../CoreSettings", optional = true }
 pdfkit = { package = "pdfkit", path = "../PDFKit", optional = true }
@@ -35,12 +37,14 @@ accessibility = ["dep:accessibility"]
 audiokit = ["dep:audiokit"]
 coredata = ["dep:coredata"]
 coreicon = ["dep:coreicon"]
+coreimage = ["dep:coreimage"]
 corelocation = ["dep:corelocation"]
 coretext = ["dep:coretext"]
 corewindows = ["dep:corewindows"]
 fishfile = ["dep:fishfile"]
 foundation = ["dep:foundation"]
 mapskit = ["dep:mapskit"]
+mediakit = ["dep:mediakit"]
 networkkit = ["dep:networkkit"]
 coresettings = ["dep:coresettings"]
 pdfkit = ["dep:pdfkit"]
@@ -52,12 +56,14 @@ Accessibility = ["accessibility"]
 AudioKit = ["audiokit"]
 CoreData = ["coredata"]
 CoreIcon = ["coreicon"]
+CoreImage = ["coreimage"]
 CoreLocation = ["corelocation"]
 CoreText = ["coretext"]
 CoreWindows = ["corewindows"]
 FishFile = ["fishfile"]
 Foundation = ["foundation"]
 MapsKit = ["mapskit"]
+MediaKit = ["mediakit"]
 NetworkKit = ["networkkit"]
 CoreSettings = ["coresettings"]
 PDFKit = ["pdfkit"]
@@ -65,7 +71,7 @@ TontooUI = ["tontooui"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","audiokit","coredata","coreicon","corelocation","coretext","corewindows","fishfile","foundation","mapskit","networkkit","coresettings","pdfkit","tontooui","weatherkit","webkit"]
+full = ["accessibility","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","tontooui","weatherkit","webkit"]
 Full = ["full"]
 
 [lib]
