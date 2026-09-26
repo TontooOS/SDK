@@ -80,6 +80,12 @@ pub fn default_output() -> Result<Option<String>> {
     call_json(b"tontoo_audiokit_default_output\0")
 }
 
+/// Bluetooth cards with profiles as a JSON array.
+pub fn bluetooth_cards() -> Result<String> {
+    call_json(b"tontoo_audiokit_bluetooth_cards\0")?
+        .ok_or_else(|| SdkError("no data".into()))
+}
+
 /// Plays a file on the system default output. Returns the stream id.
 pub fn play_file(path: &str) -> Result<u64> {
     let lib = load(NAME)?;
