@@ -29,6 +29,7 @@ fn is_wsl() -> bool {
 fn pascal_dir(framework: &str) -> Option<&'static str> {
     match framework {
         "accessibility" => Some("Accessibility"),
+        "audiokit" => Some("AudioKit"),
         "coredata" => Some("CoreData"),
         "coreicon" => Some("CoreIcon"),
         "corelocation" => Some("CoreLocation"),

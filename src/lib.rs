@@ -29,6 +29,7 @@
 //! Legacy lowercase `sdk::frameworks!()` still works.
 
 pub mod accessibility;
+pub mod audiokit;
 pub mod coreicon;
 pub mod corelocation;
 pub mod corewindows;
@@ -53,6 +54,17 @@ pub mod Accessibility {
 #[allow(non_snake_case)]
 pub mod Accessibility {
     pub use crate::accessibility::*;
+}
+
+#[cfg(feature = "audiokit")]
+#[allow(non_snake_case)]
+pub mod AudioKit {
+    pub use ::audiokit::*;
+}
+#[cfg(not(feature = "audiokit"))]
+#[allow(non_snake_case)]
+pub mod AudioKit {
+    pub use crate::audiokit::*;
 }
 
 #[cfg(feature = "coreicon")]
@@ -226,6 +238,10 @@ macro_rules! preinclude {
             pub use ::sdk::Accessibility::*;
         }
         #[allow(non_snake_case, unused_imports)]
+        mod AudioKit {
+            pub use ::sdk::AudioKit::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
         mod CoreData {
             pub use ::sdk::CoreData::*;
         }
@@ -289,6 +305,10 @@ macro_rules! preinclude {
         #[allow(unused_imports)]
         mod accessibility {
             pub use ::sdk::accessibility::*;
+        }
+        #[allow(unused_imports)]
+        mod audiokit {
+            pub use ::sdk::audiokit::*;
         }
         #[allow(unused_imports)]
         mod coreicon {
