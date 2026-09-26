@@ -21,7 +21,6 @@
 //! sdk::preinclude!();
 //!
 //! use TontooUI::Button;
-//! use UIKit::prelude::*;
 //!
 //! fn main() {}
 //! ```
@@ -32,14 +31,13 @@ pub mod accessibility;
 pub mod audiokit;
 pub mod coreicon;
 pub mod corelocation;
+pub mod coretext;
 pub mod corewindows;
 pub mod foundation;
 pub mod mapskit;
 pub mod networkkit;
 pub mod runtime;
 pub mod tontooui;
-pub mod uikit;
-pub mod uikitdynamics;
 pub mod weatherkit;
 pub mod webkit;
 
@@ -76,6 +74,17 @@ pub mod CoreIcon {
 #[allow(non_snake_case)]
 pub mod CoreIcon {
     pub use crate::coreicon::*;
+}
+
+#[cfg(feature = "coretext")]
+#[allow(non_snake_case)]
+pub mod CoreText {
+    pub use ::coretext::*;
+}
+#[cfg(not(feature = "coretext"))]
+#[allow(non_snake_case)]
+pub mod CoreText {
+    pub use crate::coretext::*;
 }
 
 #[cfg(feature = "corelocation")]
@@ -140,28 +149,6 @@ pub mod TontooUI {
 #[allow(non_snake_case)]
 pub mod TontooUI {
     pub use crate::tontooui::*;
-}
-
-#[cfg(feature = "uikit")]
-#[allow(non_snake_case)]
-pub mod UIKit {
-    pub use ::uikit::*;
-}
-#[cfg(not(feature = "uikit"))]
-#[allow(non_snake_case)]
-pub mod UIKit {
-    pub use crate::uikit::*;
-}
-
-#[cfg(feature = "uikitdynamics")]
-#[allow(non_snake_case)]
-pub mod UIKitDynamics {
-    pub use ::uikitdynamics::*;
-}
-#[cfg(not(feature = "uikitdynamics"))]
-#[allow(non_snake_case)]
-pub mod UIKitDynamics {
-    pub use crate::uikitdynamics::*;
 }
 
 #[cfg(feature = "weatherkit")]
@@ -254,6 +241,10 @@ macro_rules! preinclude {
             pub use ::sdk::CoreLocation::*;
         }
         #[allow(non_snake_case, unused_imports)]
+        mod CoreText {
+            pub use ::sdk::CoreText::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
         mod CoreWindows {
             pub use ::sdk::CoreWindows::*;
         }
@@ -286,14 +277,6 @@ macro_rules! preinclude {
             pub use ::sdk::TontooUI::*;
         }
         #[allow(non_snake_case, unused_imports)]
-        mod UIKit {
-            pub use ::sdk::UIKit::*;
-        }
-        #[allow(non_snake_case, unused_imports)]
-        mod UIKitDynamics {
-            pub use ::sdk::UIKitDynamics::*;
-        }
-        #[allow(non_snake_case, unused_imports)]
         mod WeatherKit {
             pub use ::sdk::WeatherKit::*;
         }
@@ -319,6 +302,10 @@ macro_rules! preinclude {
             pub use ::sdk::corelocation::*;
         }
         #[allow(unused_imports)]
+        mod coretext {
+            pub use ::sdk::coretext::*;
+        }
+        #[allow(unused_imports)]
         mod corewindows {
             pub use ::sdk::corewindows::*;
         }
@@ -337,14 +324,6 @@ macro_rules! preinclude {
         #[allow(unused_imports)]
         mod tontooui {
             pub use ::sdk::tontooui::*;
-        }
-        #[allow(unused_imports)]
-        mod uikit {
-            pub use ::sdk::uikit::*;
-        }
-        #[allow(unused_imports)]
-        mod uikitdynamics {
-            pub use ::sdk::uikitdynamics::*;
         }
         #[allow(unused_imports)]
         mod weatherkit {

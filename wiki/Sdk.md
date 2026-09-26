@@ -25,7 +25,7 @@ version installed on the running system.
 | Rules | [RULE.md](RULE.md) | Wiki authoring rules |
 | Dynamic loading | [#dynamic-loading](#dynamic-loading) | Library loader, `TONTOO_LIB_DIR` override, version queries |
 | Frameworks macro | [#frameworks-macro](#frameworks-macro) | `sdk::frameworks!()` shim modules and import rules |
-| Bound frameworks | [#bound-frameworks](#bound-frameworks) | accessibility, coreicon, corelocation, corewindows, foundation, mapskit, networkkit, tontooui, uikit, uikitdynamics, weatherkit, webkit APIs |
+| Bound frameworks | [#bound-frameworks](#bound-frameworks) | accessibility, coreicon, corelocation, coretext, corewindows, foundation, mapskit, networkkit, tontooui, weatherkit, webkit APIs |
 
 ## Dynamic loading
 
@@ -153,20 +153,15 @@ Handle-based components; destroyed automatically on drop.
 | `ProgressView::new()` + `.widget()` | Spinner progress view |
 | `TextInput::new(placeholder)` + `.text()` + `.widget()` | Text input field |
 
-### uikit
+### coretext
 
 | Function | Purpose |
 | --- | --- |
-| `load_css(&str) -> Result<()>` | Global CSS for all windows of the process |
-| `apply_widget_css(widget_ptr, css)` | CSS on a single GTK widget |
+| `version() -> Result<String>` | Framework version string |
+| `measure(text, size, scale) -> Result<(f32, f32)>` | Logical text size via the system library |
 
-### uikitdynamics
-
-| Function / Type | Purpose |
-| --- | --- |
-| `easing_apply(kind, t) -> Result<f32>` | Easing curves (13 kinds, see docs) |
-| `spring_advance(preset, ...)` / `spring_at_rest(preset, ...)` | Spring physics (0 default, 1 snappy, 2 bouncy, 3 soft) |
-| `Tween::new(from, to, duration, kind)` | Animation handle with `value`, `progress`, `advance` |
+With `features = ["CoreText"]` the full crate is re-exported as
+`sdk::CoreText` instead of this thin binding.
 
 ### weatherkit
 

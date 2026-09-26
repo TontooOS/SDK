@@ -38,8 +38,6 @@ fn pascal_dir(framework: &str) -> Option<&'static str> {
         "mapskit" => Some("MapsKit"),
         "networkkit" => Some("NetworkKit"),
         "tontooui" => Some("TontooUI"),
-        "uikit" => Some("UIKit"),
-        "uikitdynamics" => Some("UIKitDynamics"),
         "weatherkit" => Some("WeatherKit"),
         "webkit" => Some("WebKit"),
         _ => None,

@@ -17,6 +17,7 @@ audiokit = { package = "audiokit", path = "../AudioKit", optional = true }
 coredata = { package = "coredata", path = "../CoreData", optional = true }
 coreicon = { package = "coreicon", path = "../CoreIcon", optional = true }
 corelocation = { package = "corelocation", path = "../CoreLocation", optional = true }
+coretext = { package = "coretext", path = "../CoreText", optional = true }
 corewindows = { package = "corewindows", path = "../CoreWindows", optional = true }
 fishfile = { package = "fishfile", path = "../FishFile", optional = true }
 foundation = { package = "foundation", path = "../Foundation", optional = true }
@@ -25,8 +26,6 @@ networkkit = { package = "networkkit", path = "../NetworkKit", optional = true }
 coresettings = { package = "coresettings", path = "../CoreSettings", optional = true }
 pdfkit = { package = "pdfkit", path = "../PDFKit", optional = true }
 tontooui = { package = "tontooui", path = "../TontooUI", optional = true }
-uikit = { package = "uikit", path = "../UIKit", optional = true }
-uikitdynamics = { package = "uikitdynamics", path = "../UIKitDynamics", optional = true }
 weatherkit = { package = "weatherkit", path = "../WeatherKit", optional = true }
 webkit = { package = "webkit", path = "../WebKit", optional = true }
 
@@ -37,6 +36,7 @@ audiokit = ["dep:audiokit"]
 coredata = ["dep:coredata"]
 coreicon = ["dep:coreicon"]
 corelocation = ["dep:corelocation"]
+coretext = ["dep:coretext"]
 corewindows = ["dep:corewindows"]
 fishfile = ["dep:fishfile"]
 foundation = ["dep:foundation"]
@@ -45,8 +45,6 @@ networkkit = ["dep:networkkit"]
 coresettings = ["dep:coresettings"]
 pdfkit = ["dep:pdfkit"]
 tontooui = ["dep:tontooui"]
-uikit = ["dep:uikit"]
-uikitdynamics = ["dep:uikitdynamics"]
 weatherkit = ["dep:weatherkit"]
 webkit = ["dep:webkit"]
 # PascalCase aliases (so `features = ["TontooUI"]` works as expected)
@@ -55,6 +53,7 @@ AudioKit = ["audiokit"]
 CoreData = ["coredata"]
 CoreIcon = ["coreicon"]
 CoreLocation = ["corelocation"]
+CoreText = ["coretext"]
 CoreWindows = ["corewindows"]
 FishFile = ["fishfile"]
 Foundation = ["foundation"]
@@ -63,12 +62,10 @@ NetworkKit = ["networkkit"]
 CoreSettings = ["coresettings"]
 PDFKit = ["pdfkit"]
 TontooUI = ["tontooui"]
-UIKit = ["uikit"]
-UIKitDynamics = ["uikitdynamics"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","audiokit","coredata","coreicon","corelocation","corewindows","fishfile","foundation","mapskit","networkkit","coresettings","pdfkit","tontooui","uikit","uikitdynamics","weatherkit","webkit"]
+full = ["accessibility","audiokit","coredata","coreicon","corelocation","coretext","corewindows","fishfile","foundation","mapskit","networkkit","coresettings","pdfkit","tontooui","weatherkit","webkit"]
 Full = ["full"]
 
 [lib]
