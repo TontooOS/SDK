@@ -13,6 +13,7 @@ libloading = "0.8"
 # Re-exported frameworks (PascalCase dirs preserved per user decision).
 # Optional – enable via `features = ["uikit"]` etc. so apps pay only for what they use.
 accessibility = { package = "accessibility", path = "../Accessibility", optional = true }
+archivekit = { package = "archivekit", path = "../ArchiveKit", optional = true }
 audiokit = { package = "audiokit", path = "../AudioKit", optional = true }
 coredata = { package = "coredata", path = "../CoreData", optional = true }
 coreicon = { package = "coreicon", path = "../CoreIcon", optional = true }
@@ -28,6 +29,7 @@ networkkit = { package = "networkkit", path = "../NetworkKit", optional = true }
 coresettings = { package = "coresettings", path = "../CoreSettings", optional = true }
 launchpad = { package = "launchpad-lib", path = "../LaunchPad", optional = true }
 pdfkit = { package = "pdfkit", path = "../PDFKit", optional = true }
+sqlkit = { package = "sqlkit", path = "../SQLKit", optional = true }
 tontooui = { package = "tontooui", path = "../TontooUI", optional = true }
 weatherkit = { package = "weatherkit", path = "../WeatherKit", optional = true }
 webkit = { package = "webkit", path = "../WebKit", optional = true }
@@ -35,6 +37,7 @@ webkit = { package = "webkit", path = "../WebKit", optional = true }
 [features]
 default = []
 accessibility = ["dep:accessibility"]
+archivekit = ["dep:archivekit"]
 audiokit = ["dep:audiokit"]
 coredata = ["dep:coredata"]
 coreicon = ["dep:coreicon"]
@@ -50,11 +53,13 @@ networkkit = ["dep:networkkit"]
 coresettings = ["dep:coresettings"]
 launchpad = ["dep:launchpad"]
 pdfkit = ["dep:pdfkit"]
+sqlkit = ["dep:sqlkit"]
 tontooui = ["dep:tontooui"]
 weatherkit = ["dep:weatherkit"]
 webkit = ["dep:webkit"]
 # PascalCase aliases (so `features = ["TontooUI"]` works as expected)
 Accessibility = ["accessibility"]
+ArchiveKit = ["archivekit"]
 AudioKit = ["audiokit"]
 CoreData = ["coredata"]
 CoreIcon = ["coreicon"]
@@ -70,11 +75,12 @@ NetworkKit = ["networkkit"]
 CoreSettings = ["coresettings"]
 LaunchPad = ["launchpad"]
 PDFKit = ["pdfkit"]
+SQLKit = ["sqlkit"]
 TontooUI = ["tontooui"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","tontooui","weatherkit","webkit"]
+full = ["accessibility","archivekit","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","sqlkit","tontooui","weatherkit","webkit"]
 Full = ["full"]
 
 [lib]

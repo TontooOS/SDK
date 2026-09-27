@@ -197,7 +197,17 @@ pub mod WebKit {
     pub use crate::webkit::*;
 }
 
-// CoreData / FishFile / CoreSettings have no thin FFI shim – only full crate
+#[cfg(feature = "archivekit")]
+#[allow(non_snake_case)]
+pub mod ArchiveKit {
+    pub use ::archivekit::*;
+}
+#[cfg(not(feature = "archivekit"))]
+#[allow(non_snake_case)]
+pub mod ArchiveKit {}
+
+// CoreData / FishFile / CoreSettings / ArchiveKit have no thin FFI shim –
+// only full crate re-export, like LaunchPad
 #[cfg(feature = "corewindows")]
 #[allow(non_snake_case)]
 pub mod CoreWindows {
@@ -247,6 +257,16 @@ pub mod LaunchPad {
 #[allow(non_snake_case)]
 pub mod LaunchPad {}
 
+// SQLKit has no thin FFI shim – only full crate re-export, like CoreData.
+#[cfg(feature = "sqlkit")]
+#[allow(non_snake_case)]
+pub mod SQLKit {
+    pub use ::sqlkit::*;
+}
+#[cfg(not(feature = "sqlkit"))]
+#[allow(non_snake_case)]
+pub mod SQLKit {}
+
 /// Preferred entry point: creates PascalCase shims at the crate root
 /// so `use TontooUI::...`, `use UIKit::...` etc. work.
 ///
@@ -258,6 +278,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod Accessibility {
             pub use ::sdk::Accessibility::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod ArchiveKit {
+            pub use ::sdk::ArchiveKit::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod AudioKit {
@@ -314,6 +338,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod PDFKit {
             pub use ::sdk::PDFKit::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod SQLKit {
+            pub use ::sdk::SQLKit::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod CoreSettings {
