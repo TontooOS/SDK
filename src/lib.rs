@@ -236,6 +236,17 @@ pub mod FishFile {
 #[allow(non_snake_case)]
 pub mod FishFile {}
 
+// LaunchPad has no thin FFI shim (the lib exposes a Rust client API) –
+// full crate re-export only, like CoreData / FishFile / CoreSettings.
+#[cfg(feature = "launchpad")]
+#[allow(non_snake_case)]
+pub mod LaunchPad {
+    pub use ::launchpad::*;
+}
+#[cfg(not(feature = "launchpad"))]
+#[allow(non_snake_case)]
+pub mod LaunchPad {}
+
 /// Preferred entry point: creates PascalCase shims at the crate root
 /// so `use TontooUI::...`, `use UIKit::...` etc. work.
 ///
@@ -279,6 +290,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod FishFile {
             pub use ::sdk::FishFile::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod LaunchPad {
+            pub use ::sdk::LaunchPad::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod Foundation {
