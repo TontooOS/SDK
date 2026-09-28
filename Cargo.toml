@@ -21,6 +21,7 @@ coreimage = { package = "coreimage", path = "../CoreImage", optional = true }
 corelocation = { package = "corelocation", path = "../CoreLocation", optional = true }
 coretext = { package = "coretext", path = "../CoreText", optional = true }
 corewindows = { package = "corewindows", path = "../CoreWindows", optional = true }
+documentkit = { package = "documentkit", path = "../DocumentKit", optional = true }
 fishfile = { package = "fishfile", path = "../FishFile", optional = true }
 foundation = { package = "foundation", path = "../Foundation", optional = true }
 mapskit = { package = "mapskit", path = "../MapsKit", optional = true }
@@ -45,6 +46,7 @@ coreimage = ["dep:coreimage"]
 corelocation = ["dep:corelocation"]
 coretext = ["dep:coretext"]
 corewindows = ["dep:corewindows"]
+documentkit = ["dep:documentkit"]
 fishfile = ["dep:fishfile"]
 foundation = ["dep:foundation"]
 mapskit = ["dep:mapskit"]
@@ -67,6 +69,7 @@ CoreImage = ["coreimage"]
 CoreLocation = ["corelocation"]
 CoreText = ["coretext"]
 CoreWindows = ["corewindows"]
+DocumentKit = ["documentkit"]
 FishFile = ["fishfile"]
 Foundation = ["foundation"]
 MapsKit = ["mapskit"]
@@ -80,7 +83,7 @@ TontooUI = ["tontooui"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","archivekit","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","sqlkit","tontooui","weatherkit","webkit"]
+full = ["accessibility","archivekit","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","documentkit","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","sqlkit","tontooui","weatherkit","webkit"]
 Full = ["full"]
 
 [lib]
