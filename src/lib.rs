@@ -267,6 +267,16 @@ pub mod SQLKit {
 #[allow(non_snake_case)]
 pub mod SQLKit {}
 
+// DocumentKit has no thin FFI shim – only full crate re-export, like CoreData.
+#[cfg(feature = "documentkit")]
+#[allow(non_snake_case)]
+pub mod DocumentKit {
+    pub use ::documentkit::*;
+}
+#[cfg(not(feature = "documentkit"))]
+#[allow(non_snake_case)]
+pub mod DocumentKit {}
+
 /// Preferred entry point: creates PascalCase shims at the crate root
 /// so `use TontooUI::...`, `use UIKit::...` etc. work.
 ///
@@ -342,6 +352,10 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod SQLKit {
             pub use ::sdk::SQLKit::*;
+        }
+        #[allow(non_snake_case, unused_imports)]
+        mod DocumentKit {
+            pub use ::sdk::DocumentKit::*;
         }
         #[allow(non_snake_case, unused_imports)]
         mod CoreSettings {
