@@ -34,6 +34,7 @@ sqlkit = { package = "sqlkit", path = "../SQLKit", optional = true }
 tontooui = { package = "tontooui", path = "../TontooUI", optional = true }
 weatherkit = { package = "weatherkit", path = "../WeatherKit", optional = true }
 webkit = { package = "webkit", path = "../WebKit", optional = true }
+widgetkit = { package = "widgetkit", path = "../WidgetKit", optional = true }
 
 [features]
 default = []
@@ -59,6 +60,7 @@ sqlkit = ["dep:sqlkit"]
 tontooui = ["dep:tontooui"]
 weatherkit = ["dep:weatherkit"]
 webkit = ["dep:webkit"]
+widgetkit = ["dep:widgetkit"]
 # PascalCase aliases (so `features = ["TontooUI"]` works as expected)
 Accessibility = ["accessibility"]
 ArchiveKit = ["archivekit"]
@@ -82,8 +84,9 @@ SQLKit = ["sqlkit"]
 TontooUI = ["tontooui"]
 WeatherKit = ["weatherkit"]
 WebKit = ["webkit"]
+WidgetKit = ["widgetkit"]
 # Convenience: all frameworks except LaunchPad (excluded per plan)
-full = ["accessibility","archivekit","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","documentkit","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","sqlkit","tontooui","weatherkit","webkit"]
+full = ["accessibility","archivekit","audiokit","coredata","coreicon","coreimage","corelocation","coretext","corewindows","documentkit","fishfile","foundation","mapskit","mediakit","networkkit","coresettings","pdfkit","sqlkit","tontooui","weatherkit","webkit","widgetkit"]
 Full = ["full"]
 
 [lib]

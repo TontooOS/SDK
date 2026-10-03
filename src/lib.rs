@@ -197,6 +197,15 @@ pub mod WebKit {
     pub use crate::webkit::*;
 }
 
+#[cfg(feature = "widgetkit")]
+#[allow(non_snake_case)]
+pub mod WidgetKit {
+    pub use ::widgetkit::*;
+}
+#[cfg(not(feature = "widgetkit"))]
+#[allow(non_snake_case)]
+pub mod WidgetKit {}
+
 #[cfg(feature = "archivekit")]
 #[allow(non_snake_case)]
 pub mod ArchiveKit {
@@ -372,6 +381,9 @@ macro_rules! preinclude {
         #[allow(non_snake_case, unused_imports)]
         mod WebKit {
             pub use ::sdk::WebKit::*;
+        }
+        mod WidgetKit {
+            pub use ::sdk::WidgetKit::*;
         }
         // lowercase backward-compat
         #[allow(unused_imports)]
